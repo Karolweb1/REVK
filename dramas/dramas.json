@@ -1,0 +1,23 @@
+
+[
+  {
+    "id": "true-beauty",
+    "titulo": "True Beauty",
+    "poster": "img/truebeauty.jpg",
+    "sinopsis": "Una estudiante tímida descubre el poder del maquillaje para reinventarse, pero aprende que la verdadera belleza va más allá de lo que se ve.",
+    "puntuacion": 4.5,
+    "anio": 2020,
+    "generos": ["Romance", "Comedia", "Escolar"],
+    "plataformas": ["Viki"]
+  },
+  {
+    "id": "my-demon",
+    "titulo": "My Demon",
+    "poster": "img/mydemon.jpg",
+    "sinopsis": "Una CEO y un demonio terminan conectados por accidente. Entre contratos, poderes y secretos, surge una historia inesperada.",
+    "puntuacion": 5,
+    "anio": 2023,
+    "generos": ["Fantasía", "Romance"],
+    "plataformas": ["Netflix"]
+  }
+]
