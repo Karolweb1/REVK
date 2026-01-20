@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KDRAMER REVIEWER | 2026</title>
 
-  <!-- 1) Google Fonts: Noto Sans KR (carga real de la familia) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -14,7 +14,7 @@
     rel="stylesheet"
   />
 
-  <!-- 2) Bootstrap 5.3.3 CSS (URL correcta del archivo) -->
+  <!-- Bootstrap 5.3.3 CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -22,11 +22,55 @@
     crossorigin="anonymous"
   />
 
-  <!-- 3) Tu CSS -->
+  <!-- Tu CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos “Home” mínimos (para que funcione aunque no edites style.css) -->
+  <style>
+    :root{
+      --color-primario:#ff2e63; --color-acento:#08d9d6;
+      --surface-1:#0e0e12; --surface-2:#15151a; --text-primary:#fff; --text-secondary:#b8b8c2;
+    }
+    /* Ajuste de héroe y navbar fija */
+    body { padding-top:80px; }
+    .hero-img{ height:clamp(240px,40vw,520px); object-fit:cover; filter:brightness(.85); }
+    .hero-caption{ text-shadow:0 2px 18px rgba(0,0,0,.6); }
+    .text-truncate-2{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    /* Fila deslizante de destacadas */
+    .row-scroll{
+      display:grid; grid-auto-flow:column; grid-auto-columns:180px; gap:0.75rem; overflow-x:auto; padding-bottom:.25rem; scroll-snap-type:x mandatory;
+    }
+    .row-scroll::-webkit-scrollbar{ height:8px; }
+    .row-scroll::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.15); border-radius:999px; }
+    .tile{
+      scroll-snap-align:start; background:var(--surface-2); border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; overflow:hidden; transition:transform .2s, box-shadow .2s; color:inherit; text-decoration:none;
+    }
+    .tile:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.35); }
+    .tile img{ width:100%; height:240px; object-fit:cover; display:block; }
+    .tile .t-body{ padding:.55rem .65rem .8rem; }
+    .tile .t-title{ font-size:.95rem; color:var(--text-primary); margin:0; }
+    .rating{ color:#ffcd3c; font-weight:600; }
+    /* Feed del foro */
+    .foro-feed{ display:grid; gap:.75rem; }
+    .foro-item{
+      display:grid; grid-template-columns:40px 1fr; gap:.6rem; align-items:start; padding:.6rem;
+      background:var(--surface-2); border:1px solid rgba(255,255,255,.1); border-radius:10px;
+    }
+    .foro-avatar{
+      width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+      background:linear-gradient(90deg, var(--color-primario), var(--color-acento));
+      color:#0a0a0c; font-weight:800;
+    }
+    .foro-head{ color:var(--text-secondary); font-size:.9rem; }
+    .foro-head .sep{ margin:0 .35rem; color:var(--text-secondary); }
+    .link-acento{ color:var(--color-acento); text-decoration:none; }
+    .link-acento:hover{ color:#66f3ec; }
+  </style>
 </head>
 
 <body class="pagina-principal">
+  <!-- NAVBAR -->
   <header class="barra-navegacion">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -59,16 +103,169 @@
     </nav>
   </header>
 
-  <main class="container mt-5">
-    <h1>Bienvenidos a KDRAMER 2026</h1>
-    <p>Tu portal de reseñas de dramas coreanos.</p>
+  <!-- HERO: Carrusel “Lo nuevo” (por año) -->
+  <section class="hero-carousel">
+    <div id="carouselNuevos" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-pause="hover">
+      <div class="carousel-inner" id="hero-slides">
+        <!-- Slides generados por JS -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselNuevos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselNuevos" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </section>
+
+  <main class="container mt-4">
+    <!-- DESTACADAS -->
+    <section class="mb-4">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-2">Destacadas</h2>
+        <a class="link-acento" href="menus/series.html">Ver todas →</a>
+      </div>
+      <div id="destacadas" class="row-scroll">
+        <!-- Tarjetas generadas por JS -->
+      </div>
+    </section>
+
+    <!-- COMENTARIOS DEL FORO -->
+    <section class="mb-4">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="h4 mb-2">Comentarios del foro</h2>
+        <a class="link-acento" href="menus/foro.html">Ir al foro →</a>
+      </div>
+      <div id="foro-feed" class="foro-feed">
+        <!-- Comentarios generados por JS -->
+      </div>
+    </section>
   </main>
 
-  <!-- 4) Bootstrap JS Bundle (URL correcta del archivo) -->
+  <!-- Bootstrap JS Bundle -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"
   ></script>
+
+  <!-- Módulo de cuentas y comentarios (localStorage) -->
+  <script src="js/app.js"></script>
+
+  <!-- Lógica del Home -->
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const escapeHTML = (s='') => (s+'').replace(/[&<>\"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;'}[m]));
+    function renderStars(score=0) {
+      const full = Math.floor(score);
+      const half = score - full >= 0.5 ? 1 : 0;
+      const empty = 5 - full - half;
+      return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty);
+    }
+
+    // Cargar dramas y luego comentarios desde localStorage (KDRAMER)
+    fetch('dramas/dramas.json')
+      .then(r => r.json())
+      .then(dramas => {
+        renderHero(dramas);
+        renderDestacadas(dramas);
+        const comments = (window.KDRAMER && KDRAMER.getAllComments) ? KDRAMER.getAllComments() : [];
+        renderForoFeed(comments, dramas);
+      })
+      .catch(err => console.error('Error cargando dramas.json', err));
+
+    /* ===== Hero: lo nuevo (más recientes por año) ===== */
+    function renderHero(dramas) {
+      const cont = $('#hero-slides');
+      const recientes = [...dramas]
+        .sort((a,b)=>(b.anio||0)-(a.anio||0))
+        .slice(0, 5);
+
+      if(recientes.length === 0){
+        cont.innerHTML = `
+          <div class="carousel-item active">
+            <img class="d-block w-100 hero-img" src="https://via.placeholder.com/1200x500?text=KDRAMER" alt="Hero placeholder">
+            <div class="carousel-caption d-none d-md-block hero-caption">
+              <h3 class="mb-1">Bienvenida a KDRAMER</h3>
+              <p class="mb-2">Agrega dramas en <code>dramas/dramas.json</code> para ver novedades aquí.</p>
+            </div>
+          </div>`;
+        return;
+      }
+
+      cont.innerHTML = recientes.map((d, idx) => `
+        <div class="carousel-item ${idx===0?'active':''}">
+          <img class="d-block w-100 hero-img" src="dramas/${escapeHTML(d.poster)}" alt="Poster de ${escapeHTML(d.titulo)}" />
+          <div class="carousel-caption d-none d-md-block hero-caption">
+            <h3 class="mb-1">${escapeHTML(d.titulo)}</h3>
+            <p class="mb-2 text-truncate-2">${escapeHTML(d.sinopsis || '')}</p>
+            <a class="btn btn-primary btn-sm" href="dramas/drama.html?id=${encodeURIComponent(d.id)}">Ver detalles</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ===== Destacadas: mejor puntuación ===== */
+    function renderDestacadas(dramas) {
+      const host = $('#destacadas');
+      const top = [...dramas]
+        .sort((a,b)=>(b.puntuacion||0)-(a.puntuacion||0))
+        .slice(0, 12);
+
+      if(top.length === 0){
+        host.innerHTML = `<p class="text-secondary mb-0">Agrega títulos para ver destacados.</p>`;
+        return;
+      }
+
+      host.innerHTML = top.map(d => `
+        <a class="tile" href="dramas/drama.html?id=${encodeURIComponent(d.id)}" aria-label="Ver ${escapeHTML(d.titulo)}">
+          <img src="dramas/${escapeHTML(d.poster)}" alt="Poster de ${escapeHTML(d.titulo)}" loading="lazy" />
+          <div class="t-body">
+            <p class="t-title mb-1">${escapeHTML(d.titulo)}</p>
+            <small class="text-secondary">
+              <span class="rating">${renderStars(d.puntuacion)} ${Number(d.puntuacion||0).toFixed(1)}/5</span>
+              ${d.anio ? ` · ${escapeHTML(d.anio)}` : ''}
+            </small>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    /* ===== Feed de comentarios del foro (LocalStorage) ===== */
+    function renderForoFeed(comments, dramas) {
+      const host = $('#foro-feed');
+      if (!Array.isArray(comments) || comments.length === 0) {
+        host.innerHTML = '<p class="text-secondary mb-0">Aún no hay comentarios. ¡Inicia sesión y comenta tu primer drama!</p>';
+        return;
+      }
+
+      // Orden por fecha (recientes primero)
+      const byDate = [...comments].sort((a,b)=> new Date(b.date) - new Date(a.date)).slice(0, 6);
+      // Mapa id->título para mostrar el nombre del drama
+      const mapTitle = dramas.reduce((acc, d) => (acc[d.id] = d.titulo, acc), {});
+
+      host.innerHTML = byDate.map(c => `
+        <article class="foro-item">
+          <div class="foro-avatar">${escapeHTML((c.username||'U')[0])}</div>
+          <div class="foro-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="foro-head">
+                <strong>${escapeHTML(c.username || 'Usuario')}</strong>
+                <span class="sep">·</span>
+                <a class="link-acento" href="dramas/drama.html?id=${encodeURIComponent(c.dramaId)}">
+                  ${escapeHTML(mapTitle[c.dramaId] || c.dramaId)}
+                </a>
+                <span class="sep">·</span>
+                <span class="rating">${renderStars(c.rating || 0)}</span>
+                <span class="text-secondary"> ${Number(c.rating || 0).toFixed(1)}/5</span>
+              </div>
+              <small class="text-secondary">${new Date(c.date).toLocaleDateString()}</small>
+            </div>
+            <p class="mb-0">${escapeHTML(c.text || '')}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+  </script>
 </body>
 </html>
